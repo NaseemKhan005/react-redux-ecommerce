@@ -7,14 +7,14 @@ import Navbar from "./components/Navbar";
 
 const App = () => {
 	return (
-		<Router>
-			<Navbar />
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/cart" element={<Cart />} />
-				<Route path="*" element={<NotFound />} />
-			</Routes>
-		</Router>
+			<Router>
+				<Navbar />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/cart" element={<Cart />} />
+					<Route path="*" element={<NotFound />} />
+				</Routes>
+			</Router>
 	);
 };
 

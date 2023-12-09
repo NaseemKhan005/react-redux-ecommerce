@@ -12,13 +12,13 @@ const Navbar = () => {
 				<Link to="/" className="text-lg md:text-xl font-medium">
 					Redux Store
 				</Link>
-				<nav className="flex items-center gap-10">
-					<ul className="flex items-center gap-2">
+				<nav className="flex items-center gap-5 md:gap-10">
+					<ul className="flex items-center gap-3 md:gap-5">
 						{navLinks.map((link) => (
 							<li key={link.link}>
 								<Link
 									to={link.link}
-									className={`capitalize hover:text-primary font-medium text-[1.05rem] relative before:absolute md:before:bottom-1 before:bottom-2 px-2 pb-7 before:left-1/2 before:-translate-x-1/2 before:bg-primary before:scale-0 hover:before:scale-100 before:transition-all before:duration-500 before:w-full before:h-1 before:rounded-full ${
+									className={`capitalize hover:text-primary font-medium text-[1.05rem] relative before:absolute before:-bottom-1 px-0.5 before:left-1/2 before:-translate-x-1/2 before:bg-primary before:scale-0 hover:before:scale-100 before:transition-all before:duration-500 before:w-full before:h-[2.5px] before:rounded-full ${
 										link.link === pathname &&
 										"text-primary before:bg-primary before:scale-100"
 									}`}
