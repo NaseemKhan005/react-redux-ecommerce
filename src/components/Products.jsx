@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { TiStarFullOutline } from "react-icons/ti";
 
+import { add } from "../store/cartSlice";
+
 const Products = () => {
 	const [products, setProducts] = useState([]);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -15,6 +19,10 @@ const Products = () => {
 
 		fetchProducts();
 	}, []);
+
+	const handleAdd = (product) => {
+		dispatch(add(product));
+	};
 
 	return (
 		<div className="my-10">
@@ -50,7 +58,10 @@ const Products = () => {
 							</p>
 
 							<p className="mt-1 font-medium">${product.price}</p>
-							<button className="text-sm bg-primary text-white w-full p-3 rounded-md mt-4 capitalize cursor-pointer hover:bg-secondary flex items-center justify-center gap-1">
+							<button
+								onClick={() => handleAdd(product)}
+								className="text-sm bg-primary text-white w-full p-3 rounded-md mt-4 capitalize cursor-pointer hover:bg-secondary flex items-center justify-center gap-1"
+							>
 								<MdOutlineShoppingCart className="text-base" />
 								<span className="font-medium">add to cart</span>
 							</button>

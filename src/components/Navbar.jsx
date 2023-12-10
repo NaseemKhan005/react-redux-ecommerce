@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
@@ -5,6 +6,8 @@ import { navLinks } from "../constants/Navbar";
 
 const Navbar = () => {
 	const pathname = useLocation().pathname;
+	const totalCartItems = useSelector((state) => state.cart);
+	console.log(totalCartItems);
 
 	return (
 		<div className="border-b mb-5">
@@ -33,7 +36,7 @@ const Navbar = () => {
 						className="relative flex items-center gap-1 text-[1.4rem] hover:bg-secondary/10 p-2 rounded-full cursor-pointer"
 					>
 						<span className="absolute -top-1 -right-0.5 bg-secondary text-white w-[1.3rem] aspect-square text-xs font-medium flex items-center justify-center rounded-full">
-							5
+							{totalCartItems.length}
 						</span>
 						<span className="text-base sm:block hidden">Cart Items</span>
 						<MdOutlineShoppingCart />
