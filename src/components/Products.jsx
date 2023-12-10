@@ -1,28 +1,36 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { TiStarFullOutline } from "react-icons/ti";
 
 import { add } from "../store/cartSlice";
+import { STATUES, fetchProducts } from "../store/productSlice";
 
 const Products = () => {
-	const [products, setProducts] = useState([]);
+	const { data: products, status } = useSelector((state) => state.product);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const fetchProducts = async () => {
-			const res = await fetch("https://fakestoreapi.com/products");
-			const data = await res.json();
-
-			setProducts(data);
-		};
-
-		fetchProducts();
+		dispatch(fetchProducts("https://fakestoreapi.com/products"));
 	}, []);
 
 	const handleAdd = (product) => {
 		dispatch(add(product));
 	};
+
+	if (status === STATUES.LOADING) {
+		return (
+			<h2 className="text-2xl font-semibold text-center h-screen flex items-center justify-center">
+				Loading...
+			</h2>
+		);
+	} else if (status === STATUES.ERROR) {
+		return (
+			<h2 className="text-2xl font-semibold text-center h-screen flex items-center justify-center">
+				Something went wrong!!!
+			</h2>
+		);
+	}
 
 	return (
 		<div className="my-10">
